@@ -1,0 +1,103 @@
+
+<html>
+<head>
+  <title>Online Ambulance Booking</title>
+  <link rel="stylesheet" href="style.css"/>
+
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  />
+</head>
+<body>
+  <header class="app-header">
+    <h1>🚑 Online Ambulance Booking</h1>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>Book an ambulance</h2>
+      <form id="ambulanceForm" autocomplete="on">
+        <div class="grid">
+          <div class="field">
+            <label for="name">Patient name</label>
+            <input type="text" id="name" placeholder="e.g., Rohan Sharma" required />
+          </div>
+
+          <div class="field">
+            <label for="phone">Contact number</label>
+            <input type="tel" id="phone" placeholder="e.g., 9876543210" pattern="[0-9]{10}" required />
+          </div>
+
+          <div class="field">
+            <label for="pickup">Pickup location</label>
+            <input type="text" id="pickup" placeholder="e.g., Saharanpur, UP" required />
+          </div>
+
+          <div class="field">
+            <label for="hospital">Destination hospital</label>
+            <input type="text" id="hospital" placeholder="e.g., District Hospital" required />
+          </div>
+
+          <div class="field">
+            <label for="type">Ambulance type</label>
+            <select id="type" required>
+              <option value="basic">Basic</option>
+              <option value="icu">ICU Equipped</option>
+              <option value="ventilator">Ventilator Support</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button type="submit" class="btn-primary">Book now</button>
+          <button type="reset" class="btn-secondary">Clear</button>
+        </div>
+      </form>
+
+      <div id="bookingSummary" class="summary hidden"></div>
+    </section>
+
+    <section class="card">
+      <h2>Live tracking</h2>
+      <div class="tracking-info">
+        <div class="eta">
+          <strong>ETA:</strong> <span id="etaText">—</span>
+        </div>
+        <div class="status">
+          <strong>Status:</strong> <span id="statusText">Waiting for booking…</span>
+        </div>
+      </div>
+      <div id="map"></div>
+      <div class="legend">
+        <span>🟢 Ambulance</span>
+        <span>🔴 Destination</span>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Emergency notifications</h2>
+      <div id="notificationBox" class="notification"></div>
+      <div class="actions">
+        <button id="cancelRide" class="btn-danger" disabled>Cancel booking</button>
+        <button id="completeRide" class="btn-success" disabled>Mark as arrived</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Recent bookings</h2>
+      <ul id="recentList" class="recent-list"></ul>
+    </section>
+  </main>
+
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""
+  ></script>
+
+  <script src="script.js"></script>
+</body>
+</html>
